@@ -18,9 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: JAVA VERSION
+        run: echo "JAVA-VERSION - ${{env.JAVA_VERSION}}"
+
       - name: Setup Java JDK
         uses: actions/setup-java@v4.2.1
-        run: echo "JAVA-VERSION - ${{env.JAVA_VERSION}}"
+
         with:
           distribution: 'temurin'
           java-version: '${{env.JAVA_VERSION}}'
