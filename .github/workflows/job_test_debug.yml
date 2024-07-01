@@ -1,9 +1,6 @@
 name: Tests debug
-
 on:
-
-  workflow_dispatch:
-
+  workflow_call:
 jobs:
 
   test-debug:
