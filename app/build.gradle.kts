@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.nav.safeargs)
     alias(libs.plugins.hilt)
@@ -72,6 +73,7 @@ dependencies {
     implementation(libs.lifeCyle.viwModel)
     implementation(libs.hilt)
     implementation(libs.glide)
+    implementation(platform(libs.firebase.bom))
     ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)
     implementation(libs.room.runtime)

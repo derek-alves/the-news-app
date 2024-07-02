@@ -11,5 +11,4 @@ jobs:
 
   test:
     name: Lint Debug Variant
-    needs: lint
     uses: ./.github/workflows/job_test_debug.yml
