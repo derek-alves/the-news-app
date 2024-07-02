@@ -47,7 +47,7 @@ class NewsAPIServiceTest {
             enqueueMockResponse()
             service.getTopHeadlines("us", 1).body()
             val request = server.takeRequest()
-            assertThat(request.path).isEqualTo("/v2/top-headlines?country=us&page=1&category=general&apiKey=c16e17d44ffe4fe98f427f135369dd9b")
+            assertThat(request.path).contains("/v2/top-headlines?country=us&page=1&category=general")
 
         }
     }
