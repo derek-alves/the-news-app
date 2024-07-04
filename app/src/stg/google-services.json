@@ -7,6 +7,44 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:449083551590:android:fa99f64f614128d5c8e2a7",
+        "android_client_info": {
+          "package_name": "com.the_news"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChhlXRwKiOR4O_Q3EhWn81-iHeZTLXbeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449083551590:android:463ac482529207b3c8e2a7",
+        "android_client_info": {
+          "package_name": "com.the_news.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChhlXRwKiOR4O_Q3EhWn81-iHeZTLXbeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:449083551590:android:9d3cbf0e0ef4da40c8e2a7",
         "android_client_info": {
           "package_name": "com.the_news.stg"
