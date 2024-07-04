@@ -13,8 +13,8 @@ on:
         required: true
         type: choice
         options:
-          - development
-          - staging
+          - dev
+          - stg
 
 
 jobs:
@@ -22,7 +22,8 @@ jobs:
   deploy:
     name: deploy an internal version to app distribution
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    environment: ${{ github.event.inputs.release_type }}
+
     env:
       JAVA_VERSION: ${{ vars.JAVA_VERSION }}
     steps:
@@ -45,9 +46,9 @@ jobs:
 
       - name: Choose environment and set APK path
         run: |
-          if [ "${{ github.event.inputs.release_type }}" == "development" ]; then
+          if [ "${{ github.event.inputs.release_type }}" == "dev" ]; then
             echo "APK_PATH=app/build/outputs/apk/dev/debug/app-dev-debug.apk" >> $GITHUB_ENV
-          elif [ "${{ github.event.inputs.release_type }}" == "staging" ]; then
+          elif [ "${{ github.event.inputs.release_type }}" == "stg" ]; then
             echo "APK_PATH=app/build/outputs/apk/stg/debug/app-stg-debug.apk" >> $GITHUB_ENV
           fi
       - name: Upload artifact to Firebase App Distribution
