@@ -18,19 +18,13 @@ android {
         buildConfig = true
     }
 
-
     defaultConfig {
-
-        val apiKey = gradleLocalProperties(rootDir, rootProject.providers).getProperty("API_KEY")
-        val apiURL = gradleLocalProperties(rootDir, rootProject.providers).getProperty("MY_URL")
-
         applicationId = "com.the_news"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "API_KEY", "\"$apiKey\"")
-        buildConfigField("String", "API_URL", "\"$apiURL\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -41,6 +35,49 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        create("staging") {
+
+        }
+        create("development") {
+
+        }
+
+
+    }
+
+    flavorDimensions += listOf("releaseType")
+    productFlavors {
+        create("prod") {
+            dimension = "releaseType"
+
+            val apiKey =
+                gradleLocalProperties(rootDir, rootProject.providers).getProperty("API_KEY")
+            val apiURL = gradleLocalProperties(rootDir, rootProject.providers).getProperty("MY_URL")
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "API_URL", "\"$apiURL\"")
+        }
+        create("dev") {
+            dimension = "releaseType"
+            applicationIdSuffix = ".dev"
+            val apiKey =
+                gradleLocalProperties(rootDir, rootProject.providers).getProperty("API_KEY_DEV")
+            val apiURL =
+                gradleLocalProperties(rootDir, rootProject.providers).getProperty("MY_URL_DEV")
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "API_URL", "\"$apiURL\"")
+        }
+
+        create("stg") {
+            dimension = "releaseType"
+            applicationIdSuffix = ".stg"
+            val apiKey =
+                gradleLocalProperties(rootDir, rootProject.providers).getProperty("API_KEY_STG")
+            val apiURL =
+                gradleLocalProperties(rootDir, rootProject.providers).getProperty("MY_URL_STG")
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "API_URL", "\"$apiURL\"")
         }
     }
     compileOptions {

@@ -6,7 +6,7 @@ sealed class ViewState<T>(
 ) {
     class Success<T>(data: T) : ViewState<T>(data)
     class Loading<T>() : ViewState<T>()
-    class Error<T>(message: String? = null, type: ErrorType) :
+    class Error<T>(message: String? = null, type: ErrorType = ErrorType.Unexpected) :
         ViewState<T>(null, message)
 }
 
