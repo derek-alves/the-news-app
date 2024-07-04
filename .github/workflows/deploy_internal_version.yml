@@ -22,7 +22,7 @@ jobs:
   deploy:
     name: deploy an internal version to app distribution
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ github.event.inputs.release_type }}
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
 
     env:
       JAVA_VERSION: ${{ vars.JAVA_VERSION }}
