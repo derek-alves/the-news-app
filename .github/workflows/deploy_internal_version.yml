@@ -38,12 +38,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: FIREBASE_APP_ID
-        run: echo "JAVA-VERSION - ${{vars.FIREBASE_APP_ID}}"
-
-      - name: CREDENTIAL_FILE_CONTENT
-        run: echo "JAVA-VERSION - ${{vars.CREDENTIAL_FILE_CONTENT}}"
-
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
@@ -53,9 +47,9 @@ jobs:
       - name: Choose environment and set APK path
         run: |
           if [ "${{ github.event.inputs.release_type }}" == "dev" ]; then
-            echo "APK_PATH=app/build/outputs/apk/dev/debug/app-dev-debug.apk" >> $GITHUB_ENV
+            echo "APK_PATH=${{vars.DEV_PATH}}" >> $GITHUB_ENV
           elif [ "${{ github.event.inputs.release_type }}" == "stg" ]; then
-            echo "APK_PATH=app/build/outputs/apk/stg/debug/app-stg-debug.apk" >> $GITHUB_ENV
+            echo "APK_PATH=${{vars.STG_PATH}}" >> $GITHUB_ENV
           fi
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
