@@ -22,7 +22,7 @@ jobs:
   deploy:
     name: deploy an internal version to app distribution
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    environment: ${{ inputs.release_type }}
 
     env:
       JAVA_VERSION: ${{ vars.JAVA_VERSION }}
@@ -60,8 +60,8 @@ jobs:
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{vars.FIREBASE_APP_ID}}
+          appId: ${vars.FIREBASE_APP_ID}}
           serviceCredentialsFileContent: ${{vars.CREDENTIAL_FILE_CONTENT}}
           groups: testers
-          file: "app/build/outputs/apk/dev/debug/app-dev-debug.apk"
+          file: ${{ env.APK_PATH }}
           releaseNotes: ${{ inputs.release_notes }}
