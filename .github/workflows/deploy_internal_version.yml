@@ -42,26 +42,26 @@ jobs:
         run: echo "JAVA-VERSION - ${{vars.FIREBASE_APP_ID}}"
 
       - name: CREDENTIAL_FILE_CONTENT
-        run: echo "JAVA-VERSION - ${{vars.CREDENTIAL_FILE_CONTENT}}"
+        run: echo "JAVA-VERSION - ${{vars.FIREBASE_APP_ID}}"
 
-#      - name: Make gradlew executable
-#        run: chmod +x ./gradlew
-#
-#      - name: Execute Gradle command - assembleDebug
-#        run: ./gradlew assembleDebug
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
-#      - name: Choose environment and set APK path
-#        run: |
-#          if [ "${{ github.event.inputs.release_type }}" == "dev" ]; then
-#            echo "APK_PATH=app/build/outputs/apk/dev/debug/app-dev-debug.apk" >> $GITHUB_ENV
-#          elif [ "${{ github.event.inputs.release_type }}" == "stg" ]; then
-#            echo "APK_PATH=app/build/outputs/apk/stg/debug/app-stg-debug.apk" >> $GITHUB_ENV
-#          fi
-#      - name: Upload artifact to Firebase App Distribution
-#        uses: wzieba/Firebase-Distribution-Github-Action@v1
-#        with:
-#          appId: ${{secrets.FIREBASE_APP_ID}}
-#          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-#          groups: testers
-#          file: ${{ env.APK_PATH }}
-#          releaseNotes: ${{ inputs.release_notes }}
+      - name: Execute Gradle command - assembleDebug
+        run: ./gradlew assembleDebug
+
+      - name: Choose environment and set APK path
+        run: |
+          if [ "${{ github.event.inputs.release_type }}" == "dev" ]; then
+            echo "APK_PATH=app/build/outputs/apk/dev/debug/app-dev-debug.apk" >> $GITHUB_ENV
+          elif [ "${{ github.event.inputs.release_type }}" == "stg" ]; then
+            echo "APK_PATH=app/build/outputs/apk/stg/debug/app-stg-debug.apk" >> $GITHUB_ENV
+          fi
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${vars.FIREBASE_APP_ID}}
+          serviceCredentialsFileContent: ${{vars.FIREBASE_APP_ID}}
+          groups: testers
+          file: ${{ env.APK_PATH }}
+          releaseNotes: ${{ inputs.release_notes }}
