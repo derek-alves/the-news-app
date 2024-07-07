@@ -63,5 +63,5 @@ jobs:
           appId: ${{vars.FIREBASE_APP_ID}}
           serviceCredentialsFileContent: ${{vars.CREDENTIAL_FILE_CONTENT}}
           groups: testers
-          file: "app/build/outputs/apk/stg/debug/app-dev-debug.apk"
+          file: "app/build/outputs/apk/dev/debug/app-dev-debug.apk"
           releaseNotes: ${{ inputs.release_notes }}
