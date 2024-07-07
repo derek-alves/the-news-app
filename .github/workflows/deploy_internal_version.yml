@@ -42,7 +42,7 @@ jobs:
         run: echo "JAVA-VERSION - ${{vars.FIREBASE_APP_ID}}"
 
       - name: CREDENTIAL_FILE_CONTENT
-        run: echo "JAVA-VERSION - ${{vars.FIREBASE_APP_ID}}"
+        run: echo "JAVA-VERSION - ${{vars.CREDENTIAL_FILE_CONTENT}}"
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
