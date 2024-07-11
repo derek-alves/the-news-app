@@ -6,10 +6,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.the_news.data.model.Article
 import com.the_news.data.model.NewsResponse
 import com.the_news.domain.usecase.GetNewsHeadLinesUseCase
+import com.the_news.domain.usecase.GetSavedNewsUseCase
 import com.the_news.domain.usecase.GetSearchedNewsUseCase
 import com.the_news.domain.usecase.SaveNewsUseCase
 import com.the_news.presentation.utils.ErrorType
@@ -22,6 +24,7 @@ class NewsViewModel(
     private val getNewsHeadLinesUseCase: GetNewsHeadLinesUseCase,
     private val getSearchedNewsUseCase: GetSearchedNewsUseCase,
     private val saveNewsUseCase: SaveNewsUseCase,
+    private val getSaveNewsUseCase: GetSavedNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLine: MutableLiveData<ViewState<NewsResponse>> = MutableLiveData()
     val searchedNews: MutableLiveData<ViewState<NewsResponse>> = MutableLiveData()
@@ -132,5 +135,11 @@ class NewsViewModel(
 
     fun saveArticle(article: Article) = viewModelScope.launch {
         saveNewsUseCase.execute(article)
+    }
+
+    fun getSavedNews() = liveData {
+        getSaveNewsUseCase.execute().collect {
+            emit(it)
+        }
     }
 }
