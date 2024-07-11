@@ -2,6 +2,7 @@ package com.the_news.infra.di
 
 import com.the_news.domain.repository.NewsRepository
 import com.the_news.domain.usecase.GetNewsHeadLinesUseCase
+import com.the_news.domain.usecase.GetSavedNewsUseCase
 import com.the_news.domain.usecase.GetSearchedNewsUseCase
 import com.the_news.domain.usecase.SaveNewsUseCase
 import dagger.Module
@@ -28,5 +29,11 @@ class UseCaseModule {
     fun provideSaveNewsUseCase(newsRepository: NewsRepository): SaveNewsUseCase {
         return SaveNewsUseCase(newsRepository)
     }
+
+    @Provides
+    fun getSavedNewsUseCase(newsRepository: NewsRepository): GetSavedNewsUseCase {
+        return GetSavedNewsUseCase(newsRepository)
+    }
+
 
 }
