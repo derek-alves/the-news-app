@@ -132,6 +132,7 @@ class NewsFragment : Fragment() {
     }
 
     fun viewSearchedNews() {
+        if (view == null) return
         newsViewModel.searchedNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ViewState.Loading -> {
